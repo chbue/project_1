@@ -1,15 +1,53 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Note App</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-  <script src="scripts/index.js" type="module"></script>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My ToDo Application</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/index.css" />
+  </head>
+  <body>
+    <main>
+      <h1>My ToDo Application</h1>
 
-  <link rel="stylesheet" href="styles/index.css">
-</head>
-<body>
-<h1>Note App</h1>
+      <form id="form" action="./index.html" action="POST">
+        <label for="title">Title:</label>
+        <input id="title" type="text" name="title" required />
 
-</body>
+        <br />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <br />
+
+        <label for="importance">Importance:</label>
+        <select name="importance" id="importance" required>
+          <option value="1">not important</option>
+          <option value="2">somehow important</option>
+          <option value="3">important</option>
+          <option value="4">very important</option>
+          <option value="5">highly important</option>
+        </select>
+
+        <br />
+
+        <label for="duedate" required>Date:</label>
+        <input id="duedate" type="date" name="duedate" />
+
+        <br />
+
+        <button type="submit">Send:</button>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; cbu</p>
+    </footer>
+
+    <script src="./scripts/main.js" defer></script>
+  </body>
 </html>
