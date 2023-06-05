@@ -1,16 +1,17 @@
 export default class TodoStorage {
+  #todos;
+
   constructor() {
-    const todos = JSON.parse(localStorage.getItem("todoStorage_v1") || "[ ]");
-    this.todos = todos;
-    localStorage.setItem("todoStorage_v1", JSON.stringify(todos));
+    this.#todos = JSON.parse(localStorage.getItem("todoStorage_v1") || "[ ]");
+    localStorage.setItem("todoStorage_v1", JSON.stringify(this.#todos));
   }
 
   getAll() {
-    return this.todos;
+    return this.#todos;
   }
 
   update(todos) {
     localStorage.setItem("todoStorage_v1", JSON.stringify(todos));
-    return this.todos;
+    return this.#todos;
   }
 }

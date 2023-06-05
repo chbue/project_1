@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha 'source/public/scripts/tests/test_note.mjs'",
+    "test": "mocha 'source/public/scripts/tests/*.mjs'",
     "stylelint": "stylelint \"**/*.css\"",
     "w3c": "html-validator --file ./source/public/index.html  --verbose",
     "eslint": "eslint \"**/*.js\"",

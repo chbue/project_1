@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { Todo } from "../todo.js";
+import Todo from "../services/todo.js";
 import "mocha";
 
 describe("Array", () => {
