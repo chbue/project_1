@@ -8,12 +8,17 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/index.css" />
+    <script
+            src="scripts/controllers/todo-controller.js"
+            type="module"
+            defer
+    ></script>
   </head>
   <body>
     <main>
       <h1>My ToDo Application</h1>
 
-      <form id="form" action="./index.html" action="POST">
+      <form id="form">
         <label for="title">Title:</label>
         <input
           id="title"
@@ -37,28 +42,33 @@
 
         <label for="importance">Importance:</label>
         <select name="importance" id="importance" required>
-          <option value="1">not important</option>
-          <option value="2">somehow important</option>
-          <option value="3">important</option>
-          <option value="4">very important</option>
-          <option value="5">highly important</option>
+          <option value="0">not important</option>
+          <option value="1">important</option>
+          <option value="2">very important</option>
         </select>
 
         <br />
 
-        <label for="duedate" required>Date:</label>
-        <input id="duedate" type="date" name="duedate" />
+        <label for="dueDate">Date:</label>
+        <input id="dueDate" type="date" name="dueDate" />
 
         <br />
 
-        <button type="submit">Send:</button>
+        <button id="btnSave" type="button">Save</button>
+
       </form>
+      <button id="btnDeleteAll" type="button">Delete All</button>
+
+      <select id="dropdown">
+        <option value="id">ID</option>
+        <option value="dueDate">Due Date</option>
+        <option value="importance">Importance</option>
+      </select>
+      <section class="card" id="todoTableContainer"></section>
     </main>
 
     <footer>
       <p>&copy; cbu</p>
     </footer>
-
-    <script src="./scripts/main.js" defer></script>
   </body>
 </html>
