@@ -27,9 +27,9 @@ export default class TodoService {
 
   // TODO: consider refactoring
   sort() {
-    this.#todos.sort( function( a , b){
-      if(a.getImportance() > b.getImportance()) return -1;
-      if(a.getImportance() < b.getImportance()) return 1;
+    this.#todos.sort((a, b) => {
+      if (a.getImportance() > b.getImportance()) return -1;
+      if (a.getImportance() < b.getImportance()) return 1;
       return 0;
     });
   }
@@ -37,13 +37,7 @@ export default class TodoService {
   createTodo(title, description, importance, dueDate) {
     const id = this.#idCounter;
     this.#idCounter += 1;
-    const todo = new Todo(
-      id,
-      title,
-      description,
-      importance,
-        dueDate,
-    );
+    const todo = new Todo(id, title, description, importance, dueDate);
     this.#todos.push(todo);
     this.#save();
     // TODO: return false if todo is not correct

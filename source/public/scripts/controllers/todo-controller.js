@@ -11,9 +11,12 @@ export default class TodoController {
     this.#container = document.getElementById("todoTableContainer");
     this.#todoListRendering = new TodoListRendering(this.#container);
 
-    this.#initEventHandlers();
+    this.#initialize();
   }
 
+  #initialize() {
+    this.#initEventHandlers();
+  }
   #createTodo() {
     const nameInput = document.getElementById("title");
     const descriptionInput = document.getElementById("description");
@@ -58,13 +61,7 @@ export default class TodoController {
     });
   }
 
-  #deleteInputFields(
-    nameInput,
-    descriptionInput,
-    importanceInput,
-    dueDateInput
-  ) {
-    // eslint-disable-next-line no-param-reassign
+  #deleteInputFields(nameInput, descriptionInput, importanceInput, dueDateInput) {
     nameInput.value = "";
     descriptionInput.value = "";
     importanceInput.value = "";

@@ -30,8 +30,31 @@ export default class Todo {
     };
   }
 
+  getId() {
+    return this.#id;
+  }
+
+  getTitle() {
+    return this.#title;
+  }
+
+  getDescription() {
+    return this.#description;
+  }
   getImportance() {
     return this.#importance;
+  }
+
+  getCreateDate() {
+    return this.#createDate;
+  }
+
+  getDueDate() {
+    return this.#dueDate;
+  }
+
+  getState() {
+    return this.#state;
   }
 
   #setImportance(importance) {
@@ -40,10 +63,6 @@ export default class Todo {
     } else {
       this.#importance = importance;
     }
-  }
-
-  isDueDateInPast() {
-    return new Date() > this.#dueDate;
   }
 
   #setState(state) {
