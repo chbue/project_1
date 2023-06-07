@@ -2,8 +2,13 @@ export default class TodoStorage {
   #todos;
 
   constructor() {
-    this.#todos = JSON.parse(localStorage.getItem("todoStorage_v1") || "[ ]");
-    localStorage.setItem("todoStorage_v1", JSON.stringify(this.#todos));
+    try {
+      this.#todos = JSON.parse(localStorage.getItem("todoStorage") || "[ ]");
+      localStorage.setItem("todoStorage_v1", JSON.stringify(this.#todos));
+    }
+    catch (error) {
+      // TODO: only for test purpose
+    }
   }
 
   getAll() {
@@ -11,7 +16,13 @@ export default class TodoStorage {
   }
 
   update(todos) {
-    localStorage.setItem("todoStorage_v1", JSON.stringify(todos));
-    return this.#todos;
+    try {
+      localStorage.setItem("todoStorage", JSON.stringify(todos));
+      return this.#todos;
+    }
+    catch (error) {
+      // TODO: only for test purpose
+      return this.#todos;
+    }
   }
 }

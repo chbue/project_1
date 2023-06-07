@@ -9,6 +9,18 @@ export default class TodoService {
   constructor(storage) {
     this.#storage = storage || new TodoStorage();
     this.#todos = [];
+
+    this.#todos = this.#storage
+        .getAll()
+        .map(
+            (u) =>
+                new Todo(
+                    u.title,
+                    u.description,
+                    u.importance,
+                    new Date(u.dueDate)
+                )
+        );
     this.#idCounter = 0;
   }
 
@@ -34,11 +46,8 @@ export default class TodoService {
     });
   }
 
-  createTodo(title, description, importance, dueDate) {
-    const id = this.#idCounter;
-    this.#idCounter += 1;
-    const todo = new Todo(id, title, description, importance, dueDate);
-    this.#todos.push(todo);
+  addTodo(todo) {
+ this.#todos.push(todo);
     this.#save();
     // TODO: return false if todo is not correct
     return true;

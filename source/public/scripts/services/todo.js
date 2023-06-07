@@ -8,8 +8,9 @@ export default class Todo {
   #dueDate;
   #state;
 
-  constructor(id, title, description, importance, dueDate) {
-    this.#id = id;
+  constructor(title, description, importance, dueDate) {
+    this.#id = Todo.counter;
+    Todo.counter += 1;
     this.#title = title;
     this.#description = description;
     this.#setImportance(importance);
@@ -71,3 +72,5 @@ export default class Todo {
     }
   }
 }
+
+Todo.counter = 0;

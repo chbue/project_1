@@ -1,5 +1,6 @@
 import TodoService from "../services/todo-service.js";
 import TodoListRendering from "../views/todo-list-rendering.js";
+import Todo from "../services/todo.js";
 
 export default class TodoController {
   #todoService;
@@ -10,27 +11,28 @@ export default class TodoController {
     this.#todoService = new TodoService();
     this.#container = document.getElementById("todoTableContainer");
     this.#todoListRendering = new TodoListRendering(this.#container);
-
+    this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
     this.#initialize();
   }
 
   #initialize() {
     this.#initEventHandlers();
   }
+
   #createTodo() {
     const nameInput = document.getElementById("title");
     const descriptionInput = document.getElementById("description");
     const importanceInput = document.getElementById("importance");
     const dueDateInput = document.getElementById("dueDate");
 
-    if (
-      this.#todoService.createTodo(
-        nameInput.value,
-        descriptionInput.value,
-        importanceInput.value,
-        dueDateInput.value
-      )
-    ) {
+    const todo = new Todo(
+      nameInput.value,
+      descriptionInput.value,
+      importanceInput.value,
+      dueDateInput.value
+    );
+    if (todo) {
+      this.#todoService.addTodo(todo);
       this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
       this.#deleteInputFields(
         nameInput,
@@ -55,13 +57,18 @@ export default class TodoController {
 
     const dropdown = document.getElementById("dropdown");
     dropdown.addEventListener("change", () => {
-      const selectedValue = dropdown.value;
-      this.#todoService.sort(selectedValue);
+      // const selectedValue = dropdown.value;
+      this.#todoService.sort();
       this.#todoListRendering.renderToDoTable(this.#container.getTodos());
     });
   }
 
-  #deleteInputFields(nameInput, descriptionInput, importanceInput, dueDateInput) {
+  #deleteInputFields(
+    nameInput,
+    descriptionInput,
+    importanceInput,
+    dueDateInput
+  ) {
     nameInput.value = "";
     descriptionInput.value = "";
     importanceInput.value = "";
