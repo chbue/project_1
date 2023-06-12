@@ -8,15 +8,15 @@ export default class Todo {
   #dueDate;
   #state;
 
-  constructor(title, description, importance, dueDate) {
+  constructor(title, description, importance, createDate, dueDate, state) {
     this.#id = Todo.counter;
     Todo.counter += 1;
     this.#title = title;
     this.#description = description;
     this.#setImportance(importance);
-    this.#createDate = new Date();
+    this.#createDate = createDate || new Date();
     this.#dueDate = dueDate;
-    this.#setState("opened");
+    this.#setState(state);
   }
 
   toJSON() {

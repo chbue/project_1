@@ -3,65 +3,67 @@ import "mocha";
 import TodoService from "../services/todo-service.js";
 import TodoStorage from "../services/data/todo-storage.js";
 import Todo from "../services/todo.js";
+import TodoStorageMock from "./todo_storage_mock.js";
 
-function createSixDefaultTodos(todoService) {
-  todoService.createTodo("a_t", "d_d", 1, new Date());
-  todoService.createTodo("c_t", "e_d", 1, new Date());
-  todoService.createTodo("f_t", "b_d", 0, new Date());
-  todoService.createTodo("d_t", "a_d", 4, new Date());
-  todoService.createTodo("b_t", "f_d", 3, new Date());
-  todoService.createTodo("e_t", "c_d", 2, new Date());
-}
+function createFiveDefaultTodos(todoService) {
+  let todo1 = new Todo("b_t", "a_d", 0, new Date(), new Date(), "opened");
+  let todo2 = new Todo("c_t", "b_d", 2, new Date(), new Date(), "closed");
+  let todo3 = new Todo("a_t", "c_d", 1, new Date(), new Date(), "closed");
+  let todo4 = new Todo("d_t", "d_d", 3, new Date(), new Date(), "opened");
+  let todo5 = new Todo("d_t", "d_d", 3, new Date(), new Date(), "opened");
 
-function compareToDos(left, right) {
-  assert.equal(left.getId(),right.getId());
-  assert.equal(left.getTitle() ,right.getTitle());
-  assert.equal(left.getDescription() ,right.getDescription());
-  assert.equal(left.getImportance() ,right.getImportance());
+  todoService.addTodo(todo1);
+  todoService.addTodo(todo2);
+  todoService.addTodo(todo3);
+  todoService.addTodo(todo4);
+  todoService.addTodo(todo5);
 }
 
 describe("ToDo-Service", () => {
-  describe("add todo", () => {
-    it("set and get id", () => {
-      const testee = new TodoService(new TodoStorage());
-      assert.equal(testee.addTodo("a", "b", 0, new Date()), true);
-    });
-  });
 
   describe("sort", () => {
-    it("set and get id", () => {
-      const testee = new TodoService(new TodoStorage());
-      createSixDefaultTodos(testee);
-      assert.equal(testee.getTodos().length, 6)
+    it("sort by title", () => {
+    let testee = new TodoService(new TodoStorageMock());
+      createFiveDefaultTodos(testee);
+      assert.equal(testee.getTodos().at(0).getTitle(), "b_t");
+      assert.equal(testee.getTodos().at(1).getTitle(), "c_t");
+      assert.equal(testee.getTodos().at(2).getTitle(), "a_t");
+      assert.equal(testee.getTodos().at(3).getTitle(), "d_t");
+      assert.equal(testee.getTodos().at(4).getTitle(), "d_t");
+      testee.sort("Title");
+      assert.equal(testee.getTodos().at(0).getTitle(), "a_t");
+      assert.equal(testee.getTodos().at(1).getTitle(), "b_t");
+      assert.equal(testee.getTodos().at(2).getTitle(), "c_t");
+      assert.equal(testee.getTodos().at(3).getTitle(), "d_t");
+      assert.equal(testee.getTodos().at(4).getTitle(), "d_t");
+      testee.sort("Title");
+      assert.equal(testee.getTodos().at(0).getTitle(), "d_t");
+      assert.equal(testee.getTodos().at(1).getTitle(), "d_t");
+      assert.equal(testee.getTodos().at(2).getTitle(), "c_t");
+      assert.equal(testee.getTodos().at(3).getTitle(), "b_t");
+      assert.equal(testee.getTodos().at(4).getTitle(), "a_t");
     });
-  });
 
-    describe("sort", () => {
-        it("set and get id", () => {
-            const testee = new TodoService(new TodoStorage());
-            createSixDefaultTodos(testee);
-          testee.sort();
-          compareToDos(testee.getTodos().at(0), new Todo(3,"d_t", "a_d", 4, new Date()));
-          compareToDos(testee.getTodos().at(1), new Todo(4,"b_t", "f_d", 3, new Date()));
-          compareToDos(testee.getTodos().at(2), new Todo(5,"e_t", "c_d", 2, new Date()));
-          compareToDos(testee.getTodos().at(3), new Todo(0,"a_t", "d_d", 1, new Date()));
-          compareToDos(testee.getTodos().at(4), new Todo(1,"c_t", "e_d", 1, new Date()));
-          compareToDos(testee.getTodos().at(5), new Todo(2,"f_t", "b_d", 0, new Date()));
-        });
+    it("sort by importance", () => {
+      let testee = new TodoService(new TodoStorageMock());
+      createFiveDefaultTodos(testee);
+      assert.equal(testee.getTodos().at(0).getImportance(), 0);
+      assert.equal(testee.getTodos().at(1).getImportance(), 2);
+      assert.equal(testee.getTodos().at(2).getImportance(), 1);
+      assert.equal(testee.getTodos().at(3).getImportance(), 3);
+      assert.equal(testee.getTodos().at(4).getImportance(), 3);
+      testee.sort("Importance" );
+      assert.equal(testee.getTodos().at(0).getImportance(), 0);
+      assert.equal(testee.getTodos().at(1).getImportance(), 1);
+      assert.equal(testee.getTodos().at(2).getImportance(), 2);
+      assert.equal(testee.getTodos().at(3).getImportance(), 3);
+      assert.equal(testee.getTodos().at(4).getImportance(), 3);
+      testee.sort("Importance");
+      assert.equal(testee.getTodos().at(0).getImportance(), 3);
+      assert.equal(testee.getTodos().at(1).getImportance(), 3);
+      assert.equal(testee.getTodos().at(2).getImportance(), 2);
+      assert.equal(testee.getTodos().at(3).getImportance(), 1);
+      assert.equal(testee.getTodos().at(4).getImportance(), 0);
     });
-
-  describe("sort importance", () => {
-    it("set and get id", () => {
-      const testee = new TodoService(new TodoStorage());
-      createSixDefaultTodos(testee);
-      testee.sort();
-
-      compareToDos(testee.getTodos().at(0), new Todo(0,"a_t", "d_d", 1, new Date()));
-      compareToDos(testee.getTodos().at(1), new Todo(1,"c_t", "e_d", 1, new Date()));
-      compareToDos(testee.getTodos().at(2), new Todo(2,"f_t", "b_d", 0, new Date()));
-      compareToDos(testee.getTodos().at(3), new Todo(3,"d_t", "a_d", 4, new Date()));
-      compareToDos(testee.getTodos().at(4), new Todo(4,"b_t", "f_d", 3, new Date()));
-      compareToDos(testee.getTodos().at(5), new Todo(5,"e_t", "c_d", 2, new Date()));
-    });
-  });
+});
 });

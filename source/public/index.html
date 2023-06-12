@@ -15,63 +15,76 @@
     ></script>
   </head>
   <body>
-    <main>
-      <h1>My ToDo Application</h1>
+  <div class="title">
+    <h1>My ToDo Application</h1>
+  </div>
+  <br>
+  <div class="button-container">
+    <button id="newTodoButton" type="button">New Todo</button>
+    <button id="toggleStyleButton" type="button">Toggle Style</button>
+  </div>
+  <br>
+  <div>
+    <button id="filterByTitleButton" type="button">By Title</button>
+    <button id="filterByDueDateButton" type="button">By Due Date</button>
+    <button id="filterByCreationDateButton" type="button">By Creation Date</button>
+    <button id="filterByImportanceButton" type="button">By Importance</button>
+  </div>
 
-      <form id="form">
-        <label for="title">Title:</label>
-        <input
-          id="title"
-          type="text"
-          name="title"
-          placeholder="write a meaningful title..."
-          required
-        />
+  <div>
+    <button id="deleteAll" type="button">Delete all</button>
+  </div>
 
-        <br />
+  <main>
+    <section class="card" id="todoTableContainer"></section>
+  </main>
 
-        <label for="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          placeholder="write a description, so that you remember what to do!..."
-          required
-        ></textarea>
-
-        <br />
-
-        <label for="importance">Importance:</label>
-        <select name="importance" id="importance" required>
-          <option value="0">not important</option>
-          <option value="1">important</option>
-          <option value="2">very important</option>
-        </select>
-
-        <br />
-
-        <label for="dueDate">Date:</label>
-        <input id="dueDate" type="date" name="dueDate" />
-
-        <br />
-
-        <button id="btnSave" type="button">Save</button>
-
-      </form>
+  <dialog id="favDialog">
+    <form id="form">
+      <label for="title">Title:</label>
+      <input
+              id="title"
+              type="text"
+              name="title"
+              placeholder="write a meaningful title..."
+              required
+      />
 
       <br />
-      <h2>ToDo List</h2>
-      <button id="btnDeleteAll" type="button">Delete All</button>
 
-      <select id="dropdown">
-        <option value="id">ID</option>
-        <option value="dueDate">Due Date</option>
-        <option value="importance">Importance</option>
+      <label for="description">Description:</label>
+      <textarea
+              id="description"
+              name="description"
+              placeholder="write a description, so that you remember what to do!..."
+              required
+      ></textarea>
+
+      <br />
+
+      <label for="importance">Importance:</label>
+      <select name="importance" id="importance" required>
+        <option value="0">not important</option>
+        <option value="1">important</option>
+        <option value="2">very important</option>
       </select>
-      <section class="card" id="todoTableContainer"></section>
-    </main>
 
-    <footer>
-      <p>&copy; cbu</p>
-    </footer>
+      <br />
+
+      <label for="dueDate">Date:</label>
+      <input id="dueDate" type="date" name="dueDate" />
+
+      <br />
+
+      <div>
+        <button value="cancel" formmethod="dialog">Cancel</button>
+        <button id="confirmButton" value="default">Confirm</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer>
+    <p>&copy;cbu</p>
+  </footer>
   </body>
 </html>

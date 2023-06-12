@@ -12,12 +12,15 @@ export default class TodoController {
     this.#container = document.getElementById("todoTableContainer");
     this.#todoListRendering = new TodoListRendering(this.#container);
     this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
+    this.favDialog = document.getElementById('favDialog');
     this.#initialize();
   }
 
   #initialize() {
     this.#initEventHandlers();
   }
+
+    // eslint-disable-next-line class-methods-use-this
 
   #createTodo() {
     const nameInput = document.getElementById("title");
@@ -29,51 +32,58 @@ export default class TodoController {
       nameInput.value,
       descriptionInput.value,
       importanceInput.value,
-      dueDateInput.value
+      undefined,
+      dueDateInput.value,
+        "opened"
     );
     if (todo) {
       this.#todoService.addTodo(todo);
       this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
-      this.#deleteInputFields(
-        nameInput,
-        descriptionInput,
-        importanceInput,
-        dueDateInput
-      );
     }
   }
 
   #initEventHandlers() {
-    const createTodoButton = document.getElementById("btnSave");
-    createTodoButton.addEventListener("click", () => {
+    const newTodoButton = document.getElementById("newTodoButton");
+    newTodoButton.addEventListener("click", () => {
+      this.favDialog.showModal();
+    });
+
+    const confirmButton = document.getElementById("confirmButton");
+    confirmButton.addEventListener("click", () => {
       this.#createTodo();
+      this.favDialog.close();
     });
 
-    const deleteButton = document.getElementById("btnDeleteAll");
-    deleteButton.addEventListener("click", () => {
+    const filterByTitleButton = document.getElementById("filterByTitleButton");
+    filterByTitleButton.addEventListener("click", () => {
+      this.#todoService.sort("Title");
+      this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
+    });
+
+    const filterByDueDateButton = document.getElementById("filterByDueDateButton");
+    filterByDueDateButton.addEventListener("click", () => {
+      this.#todoService.sort("DueDate");
+      this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
+    });
+
+    const filterByCreationDateButton = document.getElementById("filterByCreationDateButton");
+    filterByCreationDateButton.addEventListener("click", () => {
+      this.#todoService.sort("CreationDate");
+      this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
+    });
+
+    const filterByImportanceButton = document.getElementById("filterByImportanceButton");
+    filterByImportanceButton.addEventListener("click", () => {
+      this.#todoService.sort("Importance");
+      this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
+    });
+
+    const deleteAll = document.getElementById("deleteAll");
+    deleteAll.addEventListener("click", () => {
       this.#todoService.deleteAll();
-      this.#todoListRendering.renderToDoTable(this.#container.getTodos());
+      this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
     });
-
-    const dropdown = document.getElementById("dropdown");
-    dropdown.addEventListener("change", () => {
-      // const selectedValue = dropdown.value;
-      this.#todoService.sort();
-      this.#todoListRendering.renderToDoTable(this.#container.getTodos());
-    });
-  }
-
-  #deleteInputFields(
-    nameInput,
-    descriptionInput,
-    importanceInput,
-    dueDateInput
-  ) {
-    nameInput.value = "";
-    descriptionInput.value = "";
-    importanceInput.value = "";
-    dueDateInput.value = "";
   }
 }
 
-const todoController = new TodoController();
+new TodoController();

@@ -5,9 +5,10 @@ import "mocha";
 describe("ToDo", () => {
     describe("getId", () => {
         it("set and get id", () => {
-            const expectedValue = -12;
-            const testee = new Todo(expectedValue, "", "", 0, new Date());
-            assert.equal(testee.getId(), expectedValue);
+            const testee1 = new Todo( "", "", 0, new Date());
+            assert.equal(testee1.getId(), 0);
+            const testee2 = new Todo( "", "", 0, new Date());
+            assert.equal(testee2.getId(), 1);
         });
     });
 
@@ -32,7 +33,6 @@ describe("ToDo", () => {
       const importance = -1;
       const expectedImportance = 0;
       const testee = new Todo(
-        0,
         "",
         "",
         importance,
@@ -45,7 +45,6 @@ describe("ToDo", () => {
       const importance = 6;
       const expectedImportance = 0;
       const testee = new Todo(
-        0,
         "",
         "",
         importance,

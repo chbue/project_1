@@ -5,6 +5,8 @@ export default class TodoService {
   #storage;
   #todos;
   #idCounter;
+  #currentSortBy;
+  #currentDirection;
 
   constructor(storage) {
     this.#storage = storage || new TodoStorage();
@@ -38,12 +40,46 @@ export default class TodoService {
   }
 
   // TODO: consider refactoring
-  sort() {
-    this.#todos.sort((a, b) => {
-      if (a.getImportance() > b.getImportance()) return -1;
-      if (a.getImportance() < b.getImportance()) return 1;
-      return 0;
-    });
+  sort(sortBy) {
+    if(sortBy === this.#currentSortBy) {
+      this.#currentDirection = this.#currentDirection === "Ascending" ? "Descending" : "Ascending";
+    }
+    else {
+      this.#currentDirection = "Ascending";
+    }
+    let compareFunction;
+    switch (sortBy) {
+      case "Title":
+        compareFunction = (item) => item.getTitle();
+        break;
+      case "Description":
+        compareFunction = (item) => item.getDescription();
+        break;
+      case "Importance":
+        compareFunction = (item) => item.getImportance();
+        break;
+      case "CreateDate":
+        compareFunction = (item) => item.getCreateDate();
+        break;
+      case "DueDate":
+        compareFunction = (item) => item.getDueDate();
+        break;
+      case "State":
+        compareFunction = (item) => item.getState();
+        break;
+      default:
+        break;
+    }
+    this.#currentSortBy = sortBy;
+        this.#todos.sort((a, b) => {
+          if (compareFunction(a) > compareFunction(b)) return (this.#currentDirection === "Ascending") ? 1 : -1;
+          if (compareFunction(a) < compareFunction(b)) return (this.#currentDirection === "Ascending") ? -1 : 1;
+          return 0;
+        });
+
+
+        this.#save();
+
   }
 
   addTodo(todo) {
