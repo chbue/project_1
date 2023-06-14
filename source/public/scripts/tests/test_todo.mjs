@@ -3,14 +3,14 @@ import Todo from "../services/todo.js";
 import "mocha";
 
 describe("ToDo", () => {
-    describe("getId", () => {
-        it("set and get id", () => {
-            const testee1 = new Todo( "", "", 0, new Date());
-            assert.equal(testee1.getId(), 0);
-            const testee2 = new Todo( "", "", 0, new Date());
-            assert.equal(testee2.getId(), 1);
-        });
+  describe("getId", () => {
+    it("set and get id", () => {
+      const testee1 = new Todo("", "", 0, new Date());
+      assert.equal(testee1.getId(), 0);
+      const testee2 = new Todo("", "", 0, new Date());
+      assert.equal(testee2.getId(), 1);
     });
+  });
 
   describe("getTitle", () => {
     it("set and get title", () => {
@@ -32,24 +32,14 @@ describe("ToDo", () => {
     it("GIVEN ToDo with importance of -1 WHEN getting importance THEN importance is 0", () => {
       const importance = -1;
       const expectedImportance = 0;
-      const testee = new Todo(
-        "",
-        "",
-        importance,
-        new Date()
-      );
+      const testee = new Todo("", "", importance, new Date());
       assert.equal(testee.getImportance(), expectedImportance);
     });
 
     it("GIVEN ToDo with importance of 6 WHEN getting importance THEN importance is 0", () => {
       const importance = 6;
       const expectedImportance = 0;
-      const testee = new Todo(
-        "",
-        "",
-        importance,
-        new Date()
-      );
+      const testee = new Todo("", "", importance, new Date());
       assert.equal(testee.getImportance(), expectedImportance);
     });
   });

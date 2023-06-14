@@ -9,82 +9,84 @@
     />
     <link rel="stylesheet" href="./styles/index.css" />
     <script
-            src="scripts/controllers/todo-controller.js"
-            type="module"
-            defer
+      src="scripts/controllers/todo-controller.js"
+      type="module"
+      defer
     ></script>
   </head>
   <body>
-  <div class="title">
-    <h1>My ToDo Application</h1>
-  </div>
-  <br>
-  <div class="button-container">
-    <button id="newTodoButton" type="button">New Todo</button>
-    <button id="toggleStyleButton" type="button">Toggle Style</button>
-  </div>
-  <br>
-  <div>
-    <button id="filterByTitleButton" type="button">By Title</button>
-    <button id="filterByDueDateButton" type="button">By Due Date</button>
-    <button id="filterByCreationDateButton" type="button">By Creation Date</button>
-    <button id="filterByImportanceButton" type="button">By Importance</button>
-  </div>
+    <div class="title">
+      <h1>My ToDo Application</h1>
+    </div>
+    <br />
+    <div class="button-container">
+      <button id="newTodoButton" type="button">New Todo</button>
+      <button id="toggleStyleButton" type="button">Toggle Style</button>
+    </div>
+    <br />
+    <div>
+      <button id="filterByTitleButton" type="button">By Title</button>
+      <button id="filterByDueDateButton" type="button">By Due Date</button>
+      <button id="filterByCreationDateButton" type="button">
+        By Creation Date
+      </button>
+      <button id="filterByImportanceButton" type="button">By Importance</button>
+    </div>
 
-  <div>
-    <button id="deleteAll" type="button">Delete all</button>
-  </div>
+    <div>
+      <button id="deleteAll" type="button">Delete all</button>
+    </div>
 
-  <main>
-    <section class="card" id="todoTableContainer"></section>
-  </main>
+    <main>
+      <section class="card" id="todoTableContainer"></section>
+    </main>
 
-  <dialog id="favDialog">
-    <form id="form">
-      <label for="title">Title:</label>
-      <input
-              id="title"
-              type="text"
-              name="title"
-              placeholder="write a meaningful title..."
-              required
-      />
+    <dialog id="favDialog">
+      <form id="form">
+        <label for="title">Title:</label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          placeholder="write a meaningful title..."
+          required
+        />
 
-      <br />
+        <br />
 
-      <label for="description">Description:</label>
-      <textarea
-              id="description"
-              name="description"
-              placeholder="write a description, so that you remember what to do!..."
-              required
-      ></textarea>
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="write a description, so that you remember what to do!..."
+          required
+        ></textarea>
 
-      <br />
+        <br />
 
-      <label for="importance">Importance:</label>
-      <select name="importance" id="importance" required>
-        <option value="0">not important</option>
-        <option value="1">important</option>
-        <option value="2">very important</option>
-      </select>
+        <label for="importance">Importance:</label>
+        <select name="importance" id="importance" required>
+          <option value="0">not important</option>
+          <option value="1">important</option>
+          <option value="2">very important</option>
+        </select>
 
-      <br />
+        <br />
 
-      <label for="dueDate">Date:</label>
-      <input id="dueDate" type="date" name="dueDate" />
+        <label for="dueDate">Date:</label>
+        <input id="dueDate" type="date" name="dueDate" />
 
-      <br />
+        <br />
 
-      <div>
-        <button value="cancel" formmethod="dialog">Cancel</button>
-        <button id="confirmButton" value="default">Confirm</button>
-      </div>
-    </form>
-  </dialog>
+        <div>
+          <button value="cancel" formmethod="dialog">Cancel</button>
+          <button id="confirmButton" value="default">Confirm</button>
+        </div>
+      </form>
+    </dialog>
 
-  <footer>
-    <p>&copy;cbu</p>
-  </footer>
+    <footer>
+      <p>&copy;cbu</p>
+    </footer>
   </body>
 </html>

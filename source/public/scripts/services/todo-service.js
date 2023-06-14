@@ -76,10 +76,7 @@ export default class TodoService {
           if (compareFunction(a) < compareFunction(b)) return (this.#currentDirection === "Ascending") ? -1 : 1;
           return 0;
         });
-
-
         this.#save();
-
   }
 
   addTodo(todo) {
