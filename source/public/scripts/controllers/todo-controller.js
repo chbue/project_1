@@ -48,8 +48,9 @@ export default class TodoController {
       this.favDialog.showModal();
     });
 
-    const confirmButton = document.getElementById("confirmButton");
-    confirmButton.addEventListener("click", () => {
+    const confirmButton = document.getElementById("form");
+    confirmButton.addEventListener("submit", (e) => {
+      e.preventDefault();
       this.#createTodo();
       this.favDialog.close();
     });
