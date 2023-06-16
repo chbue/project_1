@@ -5,66 +5,49 @@ export default class TodoListRendering {
   // TODO: consider refactoring
   // eslint-disable-next-line class-methods-use-this
   renderToDoTable(todos) {
-    while (this.container.firstChild) {
-      this.container.removeChild(this.container.firstChild);
-    }
-    const table = document.createElement("table");
+    // Define the template string
+    const templateString = `
+        <div class="todo">
+            <h2>{{title}}</h2>
+            <p><strong>Due Date:</strong> {{dueDate}}</p>
+            <p><strong>Importance:</strong> {{importance}}</p>
+            <p><strong>State:</strong> {{state}}</p>
+            <p><strong>Description:</strong> {{description}}</p>
+        </div>
+    `;
 
-    // Create table headers
-    const thead = document.createElement("thead");
-    const headerRow = document.createElement("tr");
-    const headers = [
-      "Id",
-      "Title",
-      "Description",
-      "Importance",
-      "Create Date",
-      "Due Date",
-      "State",
-    ];
+    // Compile the template
+    const template = Handlebars.compile(templateString);
 
-    headers.forEach((headerText) => {
-      const header = document.createElement("th");
-      header.textContent = headerText;
-      headerRow.appendChild(header);
-    });
+    // Create a div element to hold the rendered HTML
+    const todoContainer = document.createElement("div");
+    todoContainer.id = "todo-container";
 
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
+    // Clear the todoContainer before rendering new todos
+    todoContainer.innerHTML = "";
 
-    // Create table body
-    const tbody = document.createElement("tbody");
+    // Append the todoContainer to the document body
+    const cont = document.getElementById("todoTableContainer");
+    cont.innerHTML = "";
+    cont.appendChild(todoContainer);
 
+    // Iterate over todos and render each todo
     todos.forEach((todo) => {
-      const row = document.createElement("tr");
-      const { id, title, description, importance, createDate, dueDate, state } =
-        todo.toJSON();
+      // Render the compiled template with the todo data
+      const html = template(todo.toJSON());
 
-      const properties = [
-        id,
-        title,
-        description,
-        importance,
-        createDate,
-        dueDate,
-        state,
-      ];
-      properties.forEach((property) => {
-        this.#extracted(property, row);
-      });
+      // Create a div element for each rendered todo
+      const todoDiv = document.createElement("div");
+      todoDiv.innerHTML = html;
 
-      tbody.appendChild(row);
+      // Apply CSS styles for the todo element
+      todoDiv.style.border = "1px solid black";
+      todoDiv.style.padding = "10px";
+      todoDiv.style.marginBottom = "10px";
+
+      // Append the todo div to the todoContainer
+      todoContainer.appendChild(todoDiv);
     });
-
-    table.appendChild(tbody);
-
-    this.container.appendChild(table);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  #extracted(id, row) {
-    const cell = document.createElement("td");
-    cell.textContent = id;
-    row.appendChild(cell);
+    cont.appendChild(todoContainer);
   }
 }

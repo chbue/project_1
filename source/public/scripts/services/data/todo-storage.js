@@ -2,7 +2,7 @@ export default class TodoStorage {
   #todos;
 
   constructor() {
-    this.#todos = JSON.parse(localStorage.getItem("todoStorage") || "[ ]")
+    this.#todos = JSON.parse(localStorage.getItem("todoStorage_v1") || "[ ]")
     localStorage.setItem("todoStorage_v1", JSON.stringify(this.#todos));
   }
 
