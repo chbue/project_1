@@ -38,6 +38,7 @@ export default class TodoController {
     if (todo) {
       this.#todoService.addTodo(todo);
       this.#todoListRendering.renderToDoTable(this.#todoService.getTodos());
+      document.getElementById("form").reset();
     }
   }
 
