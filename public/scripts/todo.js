@@ -1,5 +1,4 @@
 export default class Todo {
-  #id;
   #title;
   #description;
   #importance;
@@ -8,8 +7,6 @@ export default class Todo {
   #state;
 
   constructor(title, description, importance, createDate, dueDate, state) {
-    this.#id = Todo.counter;
-    Todo.counter += 1;
     this.#title = title;
     this.#description = description;
     this.#setImportance(importance);
@@ -20,7 +17,6 @@ export default class Todo {
 
   toJSON() {
     return {
-      id: this.#id,
       title: this.#title,
       description: this.#description,
       importance: this.#importance,
@@ -28,10 +24,6 @@ export default class Todo {
       dueDate: this.#dueDate,
       state: this.#state,
     };
-  }
-
-  getId() {
-    return this.#id;
   }
 
   getTitle() {
@@ -63,11 +55,6 @@ export default class Todo {
     } else {
       this.#importance = importance;
     }
-  }
-
-  #formatDate(date) {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return date.toLocaleDateString('en-GB', options).replace(/\//g, '.');
   }
 
   #setState(state) {
