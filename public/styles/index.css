@@ -1,4 +1,203 @@
+/* Global styles */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #eaeaea;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 100px;
+  background-color: #ebc7fd;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #c453de;
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
+header button {
+  margin-left: 10px;
+}
+
+/* Main styles */
+main {
+  margin-top: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #cc18c3;
   color: #131313;
+}
+
+.sort-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+.sort-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ebc7fd;
+  color: #383838;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 5px;
+}
+
+.sort-button:hover {
+  background-color: #cc18c3;
+  color: #131313;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: #ebc7fd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-color: #c453de;
+  border-style: solid;
+}
+
+.todo-details {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.todo-details.dark-mode {
+  flex: 1;
+  padding-right: 10px;
+  color: #3a8c3d;
+}
+
+.todo-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.todo-description {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.todo-actions {
+  display: flex;
+  align-items: center;
+}
+
+.edit,
+.status {
+  margin-right: 10px;
+}
+
+.edit-todo-button,
+.todo-status-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #c453de;
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
+.edit-todo-button {
+  background-color: #c453de;
+  color: #fff;
+}
+
+.edit-todo-button:hover {
+  background-color: #cc18c3;
+  color: #131313;
+}
+
+.todo-status-button {
+  background-color: #c453de;
+  color: #fff;
+}
+
+.todo-status-button.done {
+  background-color: #275e28;
+  color: #fff;
+}
+
+.todo-status-button.done:hover {
+  background-color: #3a8c3d;
+  color: #131313;
+}
+
+#create-todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #ebc7fd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-color: #4b4747;
+  border-style: solid;
+}
+
+/* Footer styles */
+footer {
+  padding-left: 100px;
+  padding-top: 20px;
+}
+
+/* Dark Mode */
+
+body.dark-mode {
+  background-color: #262626;
+  color: #eaeaea;
+}
+
+.todo.dark-mode {
+  background-color: #5d5165;
+  border-color: #c453de;
+}
+
+header.dark-mode {
+  background-color: #7e28a8;
 }
