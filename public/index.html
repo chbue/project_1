@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My ToDo Application</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"
+      defer
+    ></script>
+
+    <link rel="stylesheet" href="styles/index.css" />
+
+    <script id="todo-list" type="text/x-handlebars-template"></script>
+
+    <script
+      src="scripts/controllers/index-controller.js"
+      type="module"
+      defer
+    ></script>
+
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+      }
+    </script>
+
+    <script
+      src="scripts/controllers/todo-controller.js"
+      type="module"
+      defer
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>My ToDo Application</h1>
+      <div>
+        <button id="buttonCreateTodo" type="button">New Todo</button>
+        <button id="buttonFilterStatus" type="button">Suppress done</button>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <button id="buttonLogin" type="button">Login</button>
+      </div>
+    </header>
+    <div id="header-container"></div>
+    <section id="login-container"></section>
+    <main>
+      <div class="sortButtons js-user">
+        <button
+          id="buttonSortTitle"
+          type="button"
+          data-sort="name"
+          class="sortButton"
+        >
+          Title
+        </button>
+        <button
+          id="buttonSortDueDate"
+          type="button"
+          data-sort="dueDate"
+          class="sortButton"
+        >
+          Due Date
+        </button>
+        <button
+          id="buttonSortCreationDate"
+          type="button"
+          data-sort="creationDate"
+          class="sortButton"
+        >
+          Create Date
+        </button>
+        <button
+          id="buttonSortImportance"
+          type="button"
+          data-sort="importance"
+          class="sortButton"
+        >
+          Importance
+        </button>
+        <button
+          id="buttonSortState"
+          type="button"
+          data-sort="status"
+          class="sortButton"
+        >
+          State
+        </button>
+      </div>
+      <section id="todo-container"></section>
+      <section id="edit-todo-container"></section>
+    </main>
+    <footer>
+      <p>©cbu</p>
+    </footer>
+  </body>
+</html>
