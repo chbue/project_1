@@ -26,7 +26,7 @@ export default class Todo {
       importance: this.#importance,
       createDate: this.#createDate,
       dueDate: this.#dueDate,
-      state: this.#state
+      state: this.#state,
     };
   }
 
@@ -66,12 +66,12 @@ export default class Todo {
   }
 
   #formatDate(date) {
-    const options = { day: "2-digit", month: "2-digit", year: "numeric" };
-    return date.toLocaleDateString("en-GB", options).replace(/\//g, ".");
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return date.toLocaleDateString('en-GB', options).replace(/\//g, '.');
   }
 
   #setState(state) {
-    if (state === "opened" || state === "closed") {
+    if (state === 'opened' || state === 'closed') {
       this.#state = state;
     }
   }

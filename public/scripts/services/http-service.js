@@ -12,7 +12,7 @@ class HttpService {
     if (valueStorage.getItem(tokenKey)) {
       fetchHeaders.append(
         'authorization',
-        `Bearer ${  valueStorage.getItem(tokenKey)}`
+        `Bearer ${valueStorage.getItem(tokenKey)}`
       );
     }
 
