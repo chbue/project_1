@@ -1,6 +1,14 @@
 import { todoService } from '../services/todo-service.js';
 import { authService } from '../services/auth-service.js';
 
+const buttonTranslations = {
+  buttonSortTitle: 'Title',
+  buttonSortDueDate: 'Due Date',
+  buttonSortCreationDate: 'Create Date',
+  buttonSortImportance: 'Importance',
+  buttonSortState: 'State',
+};
+
 export default class TodoController {
   #filterStatus;
   #sortMethod;
@@ -54,8 +62,13 @@ export default class TodoController {
     this.#initEventHandlers();
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  #translateButton(buttonId) {
+    return buttonTranslations[buttonId];
+  }
+
   #initEventHandlers() {
-    this.#buttonFilterStatus.addEventListener('click');
+    this.#buttonFilterStatus.addEventListener('click', this.#setFilterStatus.bind(this));
 
     const sortButtons = document.querySelectorAll('.sortButtons button');
     sortButtons.forEach((button) => {
@@ -63,6 +76,7 @@ export default class TodoController {
       button.addEventListener('click', () => {
         this.sortMethod = sortMethod;
         this.sortStatus = todoService.setSortStatus(sortMethod);
+        this.#refreshSortButtons();
         this.renderTodoView();
       });
     });
@@ -72,6 +86,10 @@ export default class TodoController {
       if (action === 'editTodo') {
         this.#editTodo(event);
       }
+
+      if (action === 'toggleStatus') {
+        this.#toggleTodoStatus(event);
+      }
     });
 
     const buttonCreateTodo = document.getElementById('buttonCreateTodo');
@@ -80,12 +98,96 @@ export default class TodoController {
     });
   }
 
-  #loadTodoTemplate() {
+  #refreshSortButtons() {
+    const sortButtons = document.querySelectorAll('.sortButtons button');
+    sortButtons.forEach((button) => {
+      const sortButton = button;
+      const buttonSortBy = button.getAttribute('data-sort');
+      if (buttonSortBy !== this.sortMethod) {
+        sortButton.innerHTML = this.#translateButton(button.id);
+      }
+    });
 
+    const selectedButton = document.querySelector(`.sortButtons button[data-sort="${this.sortMethod}"]`);
+    const buttonName = this.#translateButton(selectedButton.id);
+    if (this.sortStatus === 'ascending') {
+      selectedButton.innerHTML = `${buttonName} ↓`;
+    } else {
+      selectedButton.innerHTML = `${buttonName} ↑`;
+    }
+  }
+
+  #loadTodoTemplate() {
+    fetch('views/todo-list.hbs')
+      .then((response) => response.text())
+      .then((html) => {
+        this.#todoTemplateCompiled = Handlebars.compile(html);
+        this.renderTodoView();
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error('Template not found: ', error);
+      });
   }
 
   #showTodoForm(todo) {
+    const currentTodo = todo;
+    this.#todoTemplateContainer.style.display = 'none';
+    this.#editTodoContainer.style.display = 'block';
 
+    let templatePath = '';
+    if (todo != null) {
+      templatePath = 'views/edit-todo.hbs';
+    } else {
+      templatePath = 'views/create-todo.hbs';
+    }
+
+    fetch(templatePath)
+      .then((response) => response.text())
+      .then((html) => {
+        this.#editTodoContainer.innerHTML = html;
+        const todoForm = document.getElementById('todo-form');
+        const backButton = document.getElementById('backButton');
+
+        todoForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const buttonAction = event.submitter.dataset.action;
+
+          if (buttonAction === 'save') {
+            this.leaveTodoForm = false;
+            this.#submitTodoForm(currentTodo);
+          } else if (buttonAction === 'saveAndBack') {
+            this.leaveTodoForm = true;
+            const isValid = this.#submitTodoForm(currentTodo);
+            if (isValid) {
+              this.#showTodoList();
+            }
+          }
+        });
+
+        backButton.addEventListener('click', () => {
+          this.#showTodoList();
+        });
+
+        const nameInput = document.getElementById('todo-name');
+        const descriptionInput = document.getElementById('todo-description');
+        const dueDateInput = document.getElementById('todo-due-date');
+        const importanceInput = document.getElementById('todo-importance');
+
+        // Prefill values
+        dueDateInput.value = new Date().toISOString().slice(0, 10);
+
+        if (todo) {
+          nameInput.value = todo.name;
+          descriptionInput.value = todo.description;
+          dueDateInput.value = new Date(todo.dueDate).toISOString().slice(0, 10);
+          importanceInput.value = todo.importance;
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error('Template not found: ', error);
+      });
   }
 
   #submitTodoForm(todo) {
@@ -124,6 +226,9 @@ export default class TodoController {
     todoService
       .createTodo(name, description, dueDate, importance)
       .then((createdTodo) => {
+        if (!this.leaveTodoForm) {
+          this.#showTodoForm(createdTodo);
+        }
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -144,6 +249,30 @@ export default class TodoController {
       });
   }
 
+  #toggleTodoStatus(event) {
+    const { todoId } = event.target.dataset;
+    todoService
+      .getTodo(todoId)
+      .then((todo) => {
+        if (todo != null) {
+          const updatedStatus = !todo.status;
+
+          todoService
+            .updateTodoStatus(todoId, updatedStatus)
+            .then(() => {
+              this.renderTodoView();
+            })
+            .catch((error) => {
+              // eslint-disable-next-line no-console
+              console.error("error getting todo's:", error);
+            });
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error("error getting todo's:", error);
+      });
+  }
 
   #updateTodo(todoId) {
     const nameInput = document.getElementById('todo-name');
@@ -167,6 +296,16 @@ export default class TodoController {
         // eslint-disable-next-line no-console
         console.error('ups: ', error);
       });
+  }
+
+  #setFilterStatus() {
+    if (!this.#filterStatus) {
+      this.#buttonFilterStatus.textContent = 'Show done';
+    } else {
+      this.#buttonFilterStatus.textContent = 'Suppress done';
+    }
+    this.#filterStatus = !this.#filterStatus;
+    this.renderTodoView();
   }
 
   // eslint-disable-next-line class-methods-use-this

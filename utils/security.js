@@ -34,11 +34,7 @@ export class SecurityUtil {
     } else {
       const { email, pwd } = req.body;
       if (await userStore.authenticate(email, pwd)) {
-        const token = await this.createSessionToken(
-          email,
-          req.app.get('jwt-secret'),
-          req.app.get('jwt-sign')
-        );
+        const token = await this.createSessionToken(email, req.app.get('jwt-secret'), req.app.get('jwt-sign'));
         res.json(token);
       } else {
         res.status('401').json(false);
