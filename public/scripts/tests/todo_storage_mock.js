@@ -1,4 +1,4 @@
-import sinon from "sinon";
+import sinon from 'sinon';
 
 // Create a mock for the TodoStorage class
 const TodoStorageMock = sinon.stub().returns({
