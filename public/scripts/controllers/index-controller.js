@@ -12,7 +12,7 @@ export default class IndexController {
     this.#buttonLogin = document.getElementById('buttonLogin');
     this.#buttonCreateTodo = document.getElementById('buttonCreateTodo');
     this.#buttonFilterStatus = document.getElementById('buttonFilterStatus');
-    this.#sortButtons = document.querySelectorAll('.sortButtons button');
+    this.#sortButtons = document.querySelectorAll('.sort-buttons button');
 
     this.#setLoginState();
     this.#buttonLogin.addEventListener('click', () => {

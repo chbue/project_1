@@ -70,7 +70,7 @@ export default class TodoController {
   #initEventHandlers() {
     this.#buttonFilterStatus.addEventListener('click', this.#setFilterStatus.bind(this));
 
-    const sortButtons = document.querySelectorAll('.sortButtons button');
+    const sortButtons = document.querySelectorAll('.sort-buttons button');
     sortButtons.forEach((button) => {
       const sortMethod = button.getAttribute('data-sort');
       button.addEventListener('click', () => {
@@ -99,7 +99,7 @@ export default class TodoController {
   }
 
   #refreshSortButtons() {
-    const sortButtons = document.querySelectorAll('.sortButtons button');
+    const sortButtons = document.querySelectorAll('.sort-buttons button');
     sortButtons.forEach((button) => {
       const sortButton = button;
       const buttonSortBy = button.getAttribute('data-sort');
@@ -108,7 +108,7 @@ export default class TodoController {
       }
     });
 
-    const selectedButton = document.querySelector(`.sortButtons button[data-sort="${this.sortMethod}"]`);
+    const selectedButton = document.querySelector(`.sort-buttons button[data-sort="${this.sortMethod}"]`);
     const buttonName = this.#translateButton(selectedButton.id);
     if (this.sortStatus === 'ascending') {
       selectedButton.innerHTML = `${buttonName} ↓`;
