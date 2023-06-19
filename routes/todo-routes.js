@@ -8,6 +8,6 @@ router.post('/create', todoController.createTodo);
 router.get('/:id/', todoController.getTodo);
 router.put('/:id/', todoController.updateTodo);
 router.patch('/:id/', todoController.updateTodoStatus);
-router.delete('/:id/', todoController.deleteTodo);
 
+// eslint-disable-next-line import/prefer-default-export
 export const todoRoutes = router;

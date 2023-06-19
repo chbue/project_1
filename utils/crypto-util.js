@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 
+// eslint-disable-next-line import/prefer-default-export
 export class CryptoUtil {
   static hashPwd(pwd) {
     return crypto

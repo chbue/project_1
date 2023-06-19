@@ -4,6 +4,7 @@ import { userStore } from '../services/user-store.js';
 
 const sign = util.promisify(jwt.sign);
 
+// eslint-disable-next-line import/prefer-default-export
 export class SecurityUtil {
   static isLoggedIn(req) {
     return req.auth != null;
@@ -21,7 +22,7 @@ export class SecurityUtil {
     return req.auth.name;
   }
 
-  static async createSessionToken(name, secret, options, callback) {
+  static async createSessionToken(name, secret, options) {
     if (!name) {
       return '';
     }

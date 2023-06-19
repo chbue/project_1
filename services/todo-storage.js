@@ -20,6 +20,8 @@ export class TodoStorage {
     return this.db.insert(todo);
   }
 
+
+  // eslint-disable-next-line class-methods-use-this
   async generateRandomString(length) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -90,6 +92,7 @@ export class TodoStorage {
     return this.db.find({ createdBy: currentUser }).sort(sortQuery).exec();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   compareByName(a, b) {
     const nameA = a.name.toLowerCase();
     const nameB = b.name.toLowerCase();
@@ -98,6 +101,7 @@ export class TodoStorage {
     return 0;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   compareByDueDate(a, b) {
     const dateA = new Date(a.dueDate);
     const dateB = new Date(b.dueDate);
@@ -107,16 +111,19 @@ export class TodoStorage {
     return 0;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   compareByCreationDate(a, b) {
     const dateA = new Date(a.creationDate);
     const dateB = new Date(b.creationDate);
     return dateA - dateB;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   compareByImportance(a, b) {
     return a.importance - b.importance;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   compareByStatus(a, b) {
     return a.status - b.status;
   }

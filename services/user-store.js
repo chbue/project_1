@@ -1,13 +1,6 @@
 import Datastore from 'nedb-promises';
-import { CryptoUtil } from '../utils/crypto-util.js';
-
-export class User {
-  constructor(email, passwort, isAdmin = false) {
-    this.email = email;
-    this.passwortHash = CryptoUtil.hashPwd(passwort);
-    this.isAdmin = isAdmin;
-  }
-}
+import {CryptoUtil} from '../utils/crypto-util.js';
+import {User} from "./user.js";
 
 export class UserStore {
   constructor(db) {

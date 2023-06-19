@@ -5,4 +5,5 @@ const router = express.Router();
 
 router.post('/login', indexController.login);
 
+// eslint-disable-next-line import/prefer-default-export
 export const indexRoutes = router;

@@ -7,8 +7,10 @@ import { fileURLToPath } from 'url';
 import { indexRoutes } from './routes/index-routes.js';
 import { todoRoutes } from './routes/todo-routes.js';
 
+// eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// eslint-disable-next-line import/prefer-default-export
 export const app = express();
 
 app.use(express.static(path.resolve('public/html')));
