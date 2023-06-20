@@ -22,7 +22,7 @@ export default class IndexController {
   }
 
   #setLoginButton() {
-    this.#buttonLogin.innerHTML = authService.isLoggedIn() ? 'Logout' : 'Login';
+    this.#buttonLogin.innerHTML = authService.isLoggedIn() ? 'logout' : 'login';
   }
 
   #setHeaderButtons() {

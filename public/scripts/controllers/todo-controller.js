@@ -2,11 +2,11 @@ import { todoService } from '../services/todo-service.js';
 import { authService } from '../services/auth-service.js';
 
 const buttonTranslations = {
-  buttonSortTitle: 'Title',
-  buttonSortDueDate: 'Due Date',
-  buttonSortCreationDate: 'Create Date',
-  buttonSortImportance: 'Importance',
-  buttonSortState: 'State',
+  buttonSortTitle: 'title',
+  buttonSortDueDate: 'due date',
+  buttonSortCreationDate: 'create date',
+  buttonSortImportance: 'importance',
+  buttonSortState: 'state',
 };
 
 export default class TodoController {
