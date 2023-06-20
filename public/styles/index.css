@@ -1,19 +1,27 @@
 /* Global styles */
+:root {
+  --pink1: #ebc7fd;
+  --pink2: #c453de;
+  --pink3: #cc18c3;
+  --green1: #3a8c3d;
+  --green2: #275e28;
+  --white1: #f5f5f5;
+  --white2: #eaeaea;
+  --black1: #5d5165;
+  --black2: #4b4747;
+  --black3: #131313;
+}
+
 body {
   font-family: Roboto, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #eaeaea;
+  background-color: var(--white2);
+  color: var(--black3);
 }
 
 h1 {
   font-size: 36px;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
 }
 
 /* Header styles */
@@ -21,17 +29,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 100px;
-  background-color: #ebc7fd;
+  padding: 16px 100px;
+  background-color: var(--pink1);
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 16px 32px;
+  font-size: 20px;
   border: none;
-  border-radius: 5px;
-  background-color: #c453de;
-  color: #f5f5f5;
+  border-radius: 10px;
+  background-color: var(--pink2);
+  color: var(--white2);
   cursor: pointer;
 }
 
@@ -42,18 +50,12 @@ header button {
 /* Main styles */
 main {
   margin-top: 20px;
-}
-
-.buttons-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 20px;
 }
 
 button:hover {
-  background-color: #cc18c3;
-  color: #131313;
+  background-color: var(--pink3);
+  color: var(--black3);
 }
 
 .sort-buttons {
@@ -65,20 +67,20 @@ button:hover {
 }
 
 .sort-button {
-  padding: 10px 20px;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  background-color: #ebc7fd;
-  color: #383838;
+  padding: 8px 32px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: var(--white2);
+  color: var(--pink2);
+  border: 3px solid var(--pink2);
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 0 5px;
+  transition: background-color 0.5s ease;
+  margin: 0 8px;
 }
 
 .sort-button:hover {
-  background-color: #cc18c3;
-  color: #131313;
+  background-color: var(--pink3);
+  color: var(--black3);
 }
 
 section {
@@ -90,24 +92,16 @@ section {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  background-color: #ebc7fd;
-  border-radius: 5px;
+  background-color: var(--pink1);
+  border-radius: 10px;
   margin-bottom: 10px;
   margin-left: 100px;
   margin-right: 100px;
-  border-color: #c453de;
-  border-style: solid;
 }
 
 .todo-details {
   flex: 1;
-  padding-right: 10px;
-}
-
-.todo-details.dark-mode {
-  flex: 1;
-  padding-right: 10px;
-  color: #3a8c3d;
+  padding-right: 100px;
 }
 
 .todo-title {
@@ -136,34 +130,34 @@ section {
   font-size: 14px;
   border: none;
   border-radius: 5px;
-  background-color: #c453de;
-  color: #f5f5f5;
+  background-color: var(--pink2);
+  color: var(--white2);
   cursor: pointer;
 }
 
 .edit-todo-button {
-  background-color: #c453de;
-  color: #fff;
+  background-color: var(--pink2);
+  color: var(--white2);
 }
 
 .edit-todo-button:hover {
-  background-color: #cc18c3;
-  color: #131313;
+  background-color: var(--pink3);
+  color: var(--black3);
 }
 
 .todo-status-button {
-  background-color: #c453de;
-  color: #fff;
+  background-color: var(--pink2);
+  color: var(--white2);
 }
 
 .todo-status-button.done {
-  background-color: #275e28;
-  color: #fff;
+  background-color: var(--green1);
+  color: var(--white2);
 }
 
 .todo-status-button.done:hover {
-  background-color: #3a8c3d;
-  color: #131313;
+  background-color: var(--green2);
+  color: var(--black3);
 }
 
 #create-todo {
@@ -171,13 +165,11 @@ section {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #ebc7fd;
+  background-color: var(--pink1);
   border-radius: 5px;
   margin-bottom: 10px;
   margin-left: 100px;
   margin-right: 100px;
-  border-color: #4b4747;
-  border-style: solid;
 }
 
 /* Footer styles */
@@ -189,15 +181,19 @@ footer {
 /* Dark Mode */
 
 body.dark-mode {
-  background-color: #262626;
-  color: #eaeaea;
-}
-
-.todo.dark-mode {
-  background-color: #5d5165;
-  border-color: #c453de;
+  background-color: var(--black2);
+  color: var(--white1);
 }
 
 header.dark-mode {
-  background-color: #7e28a8;
+  background-color: var(--black1);
+}
+
+.todo.dark-mode {
+  background-color: var(--black2);
+  color: var(--white1);
+}
+
+#create-todo.dark-mode {
+  background-color: var(--black1);
 }
