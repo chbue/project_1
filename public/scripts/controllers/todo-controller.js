@@ -35,7 +35,16 @@ export default class TodoController {
         .then((todos) => {
           const formattedTodos = todos.map((todo) => {
             const formattedDueDate = todo.dueDate ? this.#formatDate(new Date(todo.dueDate)) : '';
-
+            let importanceFormat = '';
+            if (todo.importance === 1) {
+              importanceFormat += '⚡';
+            }
+            if (todo.importance === 2) {
+              importanceFormat += '⚡⚡';
+            }
+            if (todo.importance === 3) {
+              importanceFormat += '⚡⚡⚡';
+            }
             return {
               id: todo.id,
               createdBy: todo.createdBy,
@@ -43,7 +52,7 @@ export default class TodoController {
               status: todo.status,
               description: todo.description,
               dueDate: formattedDueDate,
-              importance: todo.importance,
+              importance: importanceFormat,
             };
           });
 
@@ -103,7 +112,7 @@ export default class TodoController {
     sortButtons.forEach((button) => {
       const sortButton = button;
       const buttonSortBy = button.getAttribute('data-sort');
-      sortButton.classList.remove("pressed")
+      sortButton.classList.remove('pressed');
       if (buttonSortBy !== this.sortMethod) {
         sortButton.innerHTML = this.#translateButton(button.id);
       }
@@ -111,7 +120,7 @@ export default class TodoController {
 
     const selectedButton = document.querySelector(`.sort-buttons button[data-sort="${this.sortMethod}"]`);
     const buttonName = this.#translateButton(selectedButton.id);
-    selectedButton.classList.add("pressed")
+    selectedButton.classList.add('pressed');
     if (this.sortStatus === 'ascending') {
       selectedButton.innerHTML = `${buttonName} ᐁ`;
     } else {
@@ -302,9 +311,9 @@ export default class TodoController {
 
   #setFilterStatus() {
     if (!this.#filterStatus) {
-      this.#buttonFilterStatus.textContent = 'Show done';
+      this.#buttonFilterStatus.textContent = 'show done';
     } else {
-      this.#buttonFilterStatus.textContent = 'Suppress done';
+      this.#buttonFilterStatus.textContent = 'suppress done';
     }
     this.#filterStatus = !this.#filterStatus;
     this.renderTodoView();
