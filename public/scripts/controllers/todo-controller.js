@@ -103,6 +103,7 @@ export default class TodoController {
     sortButtons.forEach((button) => {
       const sortButton = button;
       const buttonSortBy = button.getAttribute('data-sort');
+      sortButton.classList.remove("pressed")
       if (buttonSortBy !== this.sortMethod) {
         sortButton.innerHTML = this.#translateButton(button.id);
       }
@@ -110,6 +111,7 @@ export default class TodoController {
 
     const selectedButton = document.querySelector(`.sort-buttons button[data-sort="${this.sortMethod}"]`);
     const buttonName = this.#translateButton(selectedButton.id);
+    selectedButton.classList.add("pressed")
     if (this.sortStatus === 'ascending') {
       selectedButton.innerHTML = `${buttonName} ↓`;
     } else {
