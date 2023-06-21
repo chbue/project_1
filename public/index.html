@@ -22,25 +22,25 @@
   </head>
   <body>
     <header>
-      <h1>my todo app</h1>
+      <div class="title">my todo app</div>
       <div>
-        <button id="buttonCreateTodo" type="button">new todo</button>
-        <button id="buttonFilterStatus" type="button">suppress done</button>
-        <button onclick="toggleDarkMode()">toggle theme</button>
-        <button id="buttonLogin" type="button">login</button>
+        <button id="buttonCreateTodo" type="button" class="big-button">new todo</button>
+        <button id="buttonFilterStatus" type="button" class="big-button">suppress done</button>
+        <button onclick="toggleDarkMode()" class="big-button">toggle theme</button>
+        <button id="buttonLogin" type="button" class="big-button">login</button>
       </div>
     </header>
     <div id="header-container"></div>
     <div id="login-container"></div>
     <main>
       <div class="sort-buttons">
-        <button id="buttonSortTitle" type="button" data-sort="name" class="sort-button">title</button>
-        <button id="buttonSortDueDate" type="button" data-sort="dueDate" class="sort-button">due date</button>
-        <button id="buttonSortCreationDate" type="button" data-sort="creationDate" class="sort-button">
+        <button id="buttonSortTitle" type="button" data-sort="name" class="sort-button small-button">title</button>
+        <button id="buttonSortDueDate" type="button" data-sort="dueDate" class="sort-button small-button">due date</button>
+        <button id="buttonSortCreationDate" type="button" data-sort="creationDate" class="sort-button small-button">
           create date
         </button>
-        <button id="buttonSortImportance" type="button" data-sort="importance" class="sort-button">importance</button>
-        <button id="buttonSortState" type="button" data-sort="status" class="sort-button">state</button>
+        <button id="buttonSortImportance" type="button" data-sort="importance" class="sort-button small-button">importance</button>
+        <button id="buttonSortState" type="button" data-sort="status" class="sort-button small-button">state</button>
       </div>
       <div id="todo-container"></div>
       <div id="edit-todo-container"></div>

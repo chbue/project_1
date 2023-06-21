@@ -10,6 +10,7 @@
   --black1: #5d5165;
   --black2: #4b4747;
   --black3: #131313;
+  --radius: 10px;
 }
 
 body {
@@ -20,38 +21,39 @@ body {
   color: var(--black3);
 }
 
-h1 {
+.title {
   font-size: 36px;
+  font-weight: bold;
 }
 
 /* Header styles */
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 16px 100px;
   background-color: var(--pink1);
 }
 
 button {
-  padding: 16px 32px;
   font-size: 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius);
   background-color: var(--pink2);
   color: var(--white2);
   cursor: pointer;
+  transition: background-color 0.5s ease;
+  margin-left: 8px;
 }
 
-header button {
-  margin-left: 10px;
+.big-button {
+  padding: 16px 32px;
+}
+
+.small-button {
+  padding: 8px 32px;
 }
 
 /* Main styles */
-main {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
 button:hover {
   background-color: var(--pink3);
@@ -63,55 +65,47 @@ button:hover {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  margin-top: 20px;
   padding: 10px 0;
 }
 
 .sort-button {
-  padding: 8px 32px;
-  font-size: 20px;
-  border-radius: 10px;
   background-color: var(--white2);
   color: var(--pink2);
   border: 3px solid var(--pink2);
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  margin: 0 8px;
 }
 
 .sort-button:hover {
   background-color: var(--pink3);
-  color: var(--black3);
-}
-
-section {
-  margin-bottom: 20px;
+  border: 3px solid var(--pink3);
 }
 
 .todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
+  padding-left: 50px;
+  padding-right: 50px;
   background-color: var(--pink1);
-  border-radius: 10px;
+  border-radius: var(--radius);
   margin-bottom: 10px;
   margin-left: 100px;
   margin-right: 100px;
 }
 
+.todo-details-title {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  width: 400px;
+}
+
 .todo-details {
-  flex: 1;
-  padding-right: 100px;
+  font-size: 20px;
 }
 
 .todo-title {
-  font-size: 18px;
-  margin-bottom: 5px;
-}
-
-.todo-description {
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 36px;
 }
 
 .todo-actions {
@@ -119,35 +113,8 @@ section {
   align-items: center;
 }
 
-.edit,
-.status {
-  margin-right: 10px;
-}
-
-.edit-todo-button,
 .todo-status-button {
-  padding: 10px 20px;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--pink2);
-  color: var(--white2);
-  cursor: pointer;
-}
-
-.edit-todo-button {
-  background-color: var(--pink2);
-  color: var(--white2);
-}
-
-.edit-todo-button:hover {
-  background-color: var(--pink3);
-  color: var(--black3);
-}
-
-.todo-status-button {
-  background-color: var(--pink2);
-  color: var(--white2);
+  padding: 4px 16px;
 }
 
 .todo-status-button.done {
@@ -160,13 +127,29 @@ section {
   color: var(--black3);
 }
 
+input {
+  font-size: 16px;
+  height: 30px;
+  background-color: var(--white2);
+  border: none;
+  border-radius: var(--radius);
+}
+
+select {
+  font-size: 16px;
+  height: 30px;
+  background-color: var(--white2);
+  border: none;
+  border-radius: var(--radius);
+}
+
 #create-todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   background-color: var(--pink1);
-  border-radius: 5px;
+  border-radius: var(--radius);
   margin-bottom: 10px;
   margin-left: 100px;
   margin-right: 100px;
@@ -185,15 +168,19 @@ body.dark-mode {
   color: var(--white1);
 }
 
-header.dark-mode {
+.dark-mode header {
   background-color: var(--black1);
 }
 
-.todo.dark-mode {
-  background-color: var(--black2);
+.dark-mode .todo {
+  background-color: var(--black1);
   color: var(--white1);
 }
 
-#create-todo.dark-mode {
+.dark-mode #create-todo {
   background-color: var(--black1);
+}
+
+.dark-mode .sort-button {
+  background-color: var(--black2);
 }

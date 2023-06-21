@@ -1,32 +1,31 @@
-<div class="todos">
+<div class='todos'>
   {{#each todos}}
-  <div class="todo">
-    <div class="todo-details">
-      <h1 class="todo-title">{{name}}</h1>
-      <p class="todo-dueDate">{{dueDate}}</p>
-        <p class="todo-description">{{description}}</p>
-      <p class="todo-importance {{importance}}">importance: {{importance}}</p>
-
-    </div>
-    <div class="todo-actions">
-      <div class="edit">
-        <button
-          type="button"
-          class="edit-todo-button btn btn-primary"
-          data-todo-id="{{id}}" data-action="editTodo"
-        >
-          edit
-        </button>
+    <div class='todo'>
+      <div class='todo-details'>
+        <div class='todo-details-title'>
+          <h1 class='todo-title'>{{name}}</h1>
+          <div class='todo-actions'>
+            <div class='status'>
+                <button
+                            class="todo-status-button small-button {{#if status}}done{{else}}not-done{{/if}}"
+                            data-todo-id="{{id}}" data-action="toggleStatus"
+                    >
+                        {{#if status}} done {{else}} open {{/if}}
+                    </button>
+            </div>
+          </div>
+        </div>
+          <p class='todo-dueDate'>{{dueDate}}</p>
+        <p class='todo-description'>{{description}}</p>
       </div>
-      <div class="status">
-        <button
-          class="todo-status-button {{#if status}}done{{else}}not-done{{/if}}"
-          data-todo-id="{{id}}" data-action="toggleStatus"
-        >
-          {{#if status}} done {{else}} open {{/if}}
-        </button>
+      <div class='todo-actions'>
+        <p class='todo-importance {{importance}}'>importance: {{importance}}</p>
+        <div class='edit'>
+          <button type='button' class='edit-todo-button small-button' data-todo-id='{{id}}' data-action='editTodo'>
+            edit
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   {{/each}}
 </div>

@@ -1,19 +1,21 @@
 <div id='create-todo' class='edit'>
-  <h2>edit</h2>
-
-  <form id='todo-form'>
-    <input type='text' id='todo-name' placeholder='Todo Name' required />
-    <input type='text' id='todo-description' placeholder='Todo Description' />
-    <input type='date' title='datum' id='todo-due-date' required />
-    <select title='importance' id='todo-importance' required>
-      <option value='1'>1</option>
-      <option value='2'>2</option>
-      <option value='3'>3</option>
-    </select>
-
-    <button id='saveAndBackButton' type='submit' data-action='saveAndBack'>
+  <div>
+    <h2>edit</h2>
+    <form id='todo-form'>
+      <input type='text' id='todo-name' placeholder='Todo Name' required />
+      <input type='text' id='todo-description' placeholder='Todo Description' />
+      <input type='date' title='datum' id='todo-due-date' required />
+      <select title='importance' id='todo-importance' required>
+        <option value='1'>1</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+      </select>
+    </form>
+  </div>
+  <div>
+    <button id='backButton' type='button' class='small-button'>back</button>
+    <button id='saveAndBackButton' type='submit' data-action='saveAndBack' class='small-button'>
       save
     </button>
-    <button id='backButton' type='button'>back</button>
-  </form>
+  </div>
 </div>
