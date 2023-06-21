@@ -113,9 +113,9 @@ export default class TodoController {
     const buttonName = this.#translateButton(selectedButton.id);
     selectedButton.classList.add("pressed")
     if (this.sortStatus === 'ascending') {
-      selectedButton.innerHTML = `${buttonName} ↓`;
+      selectedButton.innerHTML = `${buttonName} ᐁ`;
     } else {
-      selectedButton.innerHTML = `${buttonName} ↑`;
+      selectedButton.innerHTML = `${buttonName} ᐃ`;
     }
   }
 
