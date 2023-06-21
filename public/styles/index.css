@@ -41,7 +41,7 @@ button {
   background-color: var(--pink2);
   color: var(--white2);
   cursor: pointer;
-  transition: background-color 0.5s ease;
+  transition: all 0.5s ease;
   margin-left: 8px;
 }
 
@@ -188,4 +188,13 @@ body.dark-mode {
 
 .dark-mode .sort-button {
   background-color: var(--black2);
+}
+
+.dark-mode .sort-button.pressed {
+  background-color: var(--pink2);
+  color: var(--black3);
+}
+
+.dark-mode .sort-button.pressed:hover {
+  background-color: var(--pink3);
 }
