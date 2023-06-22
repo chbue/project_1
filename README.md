@@ -1,3 +1,16 @@
+# Todo's
+
+- [ ] remove edit-todo.hps/create-todo.hbs (duplicated code)
+- [ ] add delete button
+
+## Figma TodoList bright
+
+![alt text](https://github.com/chbue/project_1/blob/develop/Screenshot%202023-06-21%20003107.png)
+
+## Figma TodoList dark
+
+![alt text](https://github.com/chbue/project_1/blob/develop/Screenshot%202023-06-21%20003107.png)
+
 Die Vorlage beinhaltet CSS/HTML/JS-Linter. Diese sind konfiguriert.
 
 Getting Started
