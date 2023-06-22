@@ -11,14 +11,23 @@
   --black2: #4b4747;
   --black3: #131313;
   --radius: 10px;
+  --screen-width: 85%;
+  --padding-main-side: 24px;
 }
 
 body {
   font-family: Roboto, sans-serif;
+  background-color: var(--white2);
   margin: 0;
   padding: 0;
-  background-color: var(--white2);
   color: var(--black3);
+  min-width: 920px;
+}
+
+main {
+  width: var(--screen-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
@@ -28,10 +37,22 @@ body {
 
 /* Header styles */
 header {
+  background-color: var(--pink1);
+}
+
+.my-header {
   display: flex;
   justify-content: space-between;
-  padding: 16px 100px;
-  background-color: var(--pink1);
+  max-width: var(--screen-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 34px;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 button {
@@ -42,7 +63,6 @@ button {
   color: var(--white2);
   cursor: pointer;
   transition: all 0.5s ease;
-  margin-left: 8px;
 }
 
 .big-button {
@@ -64,9 +84,9 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  padding: 10px 0;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  gap: 12px;
 }
 
 .sort-button {
@@ -89,33 +109,44 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: var(--padding-main-side);
+  padding-right: var(--padding-main-side);
   background-color: var(--pink1);
   border-radius: var(--radius);
   margin-bottom: 10px;
-  margin-left: 100px;
-  margin-right: 100px;
 }
 
 .todo-details-title {
   display: flex;
-  gap: 24px;
+  font-weight: bold;
+  gap: 20px;
+  padding-bottom: 20px;
   align-items: center;
-  width: 400px;
+  width: auto;
 }
 
 .todo-details {
   font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 20px;
+  padding-right: 20px;
+  flex: 2 1 auto;
 }
 
 .todo-title {
   font-size: 36px;
 }
 
+.todo-description {
+  margin-top: 10px;
+  width: 100%;
+}
+
 .todo-actions {
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
 .todo-status-button {
@@ -132,32 +163,46 @@ button:hover {
   color: var(--black3);
 }
 
-input {
-  font-size: 16px;
+input,
+textarea {
+  font-size: 20px;
   height: 30px;
   background-color: var(--white2);
   border: none;
   border-radius: var(--radius);
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  resize: none;
+}
+
+.big-input {
+  padding-bottom: 0;
+}
+
+textarea {
+  height: 50px;
 }
 
 select {
-  font-size: 16px;
-  height: 30px;
+  font-size: 26px;
+  height: auto;
   background-color: var(--white2);
   border: none;
   border-radius: var(--radius);
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
 }
 
-#create-todo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: var(--pink1);
-  border-radius: var(--radius);
-  margin-bottom: 10px;
-  margin-left: 100px;
-  margin-right: 100px;
+.todo-container {
+  width: 80%;
+}
+
+.inputs {
+  width: 100%;
 }
 
 /* Footer styles */
