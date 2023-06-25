@@ -52,11 +52,6 @@ class HttpService {
     }
     return valueStorage.setItem(sortKey, sortBy);
   }
-
-  getSortStatus(sortMethod) {
-    const sortKey = this.getSortKey(sortMethod);
-    return valueStorage.getItem(sortKey);
-  }
 }
 
 // eslint-disable-next-line import/prefer-default-export

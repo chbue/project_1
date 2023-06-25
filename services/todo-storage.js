@@ -9,7 +9,7 @@ export class TodoStorage {
 
   async add(id, createdBy, name, status, description, importance, dueDate) {
     const todo = new Todo(
-      await this.generateRandomString(16),
+      await this.#generateRandomString(16),
       createdBy,
       name,
       false,
@@ -21,7 +21,7 @@ export class TodoStorage {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async generateRandomString(length) {
+  async #generateRandomString(length) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -52,25 +52,20 @@ export class TodoStorage {
     return this.get(id, createdBy);
   }
 
-  async delete(id, currentUser) {
-    await this.db.update({ _id: id, createdBy: currentUser }, { $set: { state: 'DELETED' } });
-    return this.get(id, currentUser);
-  }
-
   async get(id, currentUser) {
     return this.db.findOne({ id, createdBy: currentUser });
   }
 
   async getTodos(currentUser, sortMethod, sortOrder, filterStatus) {
     const sortOptions = {
-      name: { key: 'name', compareFn: this.compareByName },
-      dueDate: { key: 'dueDate', compareFn: this.compareByDueDate },
+      name: { key: 'name', compareFn: this.#compareByName },
+      dueDate: { key: 'dueDate', compareFn: this.#compareByDueDate },
       creationDate: {
         key: 'creationDate',
-        compareFn: this.compareByCreationDate,
+        compareFn: this.#compareByCreationDate,
       },
-      importance: { key: 'importance', compareFn: this.compareByImportance },
-      status: { key: 'status', compareFn: this.compareByStatus },
+      importance: { key: 'importance', compareFn: this.#compareByImportance },
+      status: { key: 'status', compareFn: this.#compareByStatus },
     };
 
     const sortOption = sortOptions[sortMethod];
@@ -92,7 +87,7 @@ export class TodoStorage {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  compareByName(a, b) {
+  #compareByName(a, b) {
     const nameA = a.name.toLowerCase();
     const nameB = b.name.toLowerCase();
     if (nameA < nameB) return -1;
@@ -101,7 +96,7 @@ export class TodoStorage {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  compareByDueDate(a, b) {
+  #compareByDueDate(a, b) {
     const dateA = new Date(a.dueDate);
     const dateB = new Date(b.dueDate);
 
@@ -111,19 +106,19 @@ export class TodoStorage {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  compareByCreationDate(a, b) {
+  #compareByCreationDate(a, b) {
     const dateA = new Date(a.creationDate);
     const dateB = new Date(b.creationDate);
     return dateA - dateB;
   }
 
   // eslint-disable-next-line class-methods-use-this
-  compareByImportance(a, b) {
+  #compareByImportance(a, b) {
     return a.importance - b.importance;
   }
 
   // eslint-disable-next-line class-methods-use-this
-  compareByStatus(a, b) {
+  #compareByStatus(a, b) {
     return a.status - b.status;
   }
 }

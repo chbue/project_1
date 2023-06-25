@@ -25,6 +25,7 @@ export default class AuthenticationView {
   // eslint-disable-next-line class-methods-use-this
   #setHeaderButtons(isLoggedIn) {
     document.querySelectorAll('.logged-in').forEach((loggedInElements) => {
+      // eslint-disable-next-line no-param-reassign
       loggedInElements.style.visibility = isLoggedIn ? 'visible' : 'hidden';
     });
   }
