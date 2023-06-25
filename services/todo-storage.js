@@ -20,7 +20,6 @@ export class TodoStorage {
     return this.db.insert(todo);
   }
 
-
   // eslint-disable-next-line class-methods-use-this
   async generateRandomString(length) {
     let result = '';

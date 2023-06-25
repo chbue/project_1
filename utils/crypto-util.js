@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from "crypto";
 
 // eslint-disable-next-line import/prefer-default-export
 export class CryptoUtil {

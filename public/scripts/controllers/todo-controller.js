@@ -17,6 +17,7 @@ export default class TodoController {
   #todoTemplateContainer;
   #editTodoContainer;
   #todoTemplateCompiled;
+
   constructor() {
     this.#todoTemplateCompiled = Handlebars.compile(document.getElementById('todo-list').innerHTML);
     this.#filterStatus = false;
@@ -122,9 +123,9 @@ export default class TodoController {
     const buttonName = this.#translateButton(selectedButton.id);
     selectedButton.classList.add('pressed');
     if (this.sortStatus === 'ascending') {
-      selectedButton.innerHTML = `${buttonName} ᐁ`;
+      selectedButton.innerHTML = `${buttonName} ▲`;
     } else {
-      selectedButton.innerHTML = `${buttonName} ᐃ`;
+      selectedButton.innerHTML = `${buttonName} ▼`;
     }
   }
 
@@ -147,11 +148,7 @@ export default class TodoController {
     this.#editTodoContainer.style.display = 'block';
 
     let templatePath = '';
-    if (todo != null) {
-      templatePath = 'views/edit-todo.hbs';
-    } else {
-      templatePath = 'views/create-todo.hbs';
-    }
+    templatePath = 'views/edit-todo.hbs';
 
     fetch(templatePath)
       .then((response) => response.text())

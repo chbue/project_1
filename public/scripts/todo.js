@@ -33,6 +33,7 @@ export default class Todo {
   getDescription() {
     return this.#description;
   }
+
   getImportance() {
     return this.#importance;
   }

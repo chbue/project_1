@@ -2,6 +2,11 @@
 
 - [ ] remove edit-todo.hps/create-todo.hbs (duplicated code)
 - [ ] add delete button
+- [ ] delete unused files
+- [ ] find a better way to get rid of the elements when logged out
+- [ ] write some tests
+- [ ] fix checks
+- [ ] render todos when log in
 
 ## Figma TodoList bright
 
