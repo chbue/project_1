@@ -1,0 +1,248 @@
+/* Global styles */
+:root {
+  --pink1: #ebc7fd;
+  --pink2: #c453de;
+  --pink3: #cc18c3;
+  --green1: #3a8c3d;
+  --green2: #275e28;
+  --white1: #f5f5f5;
+  --white2: #eaeaea;
+  --black1: #5d5165;
+  --black2: #4b4747;
+  --black3: #131313;
+  --radius: 10px;
+  --screen-width: 85%;
+  --padding-main-side: 24px;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  background-color: var(--white2);
+  margin: 0;
+  padding: 0;
+  color: var(--black3);
+  min-width: 920px;
+}
+
+main {
+  width: var(--screen-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* Header styles */
+header {
+  background-color: var(--pink1);
+}
+
+.my-header {
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--screen-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 34px;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+button {
+  font-size: 20px;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--pink2);
+  color: var(--white2);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.big-button {
+  padding: 16px 32px;
+}
+
+.small-button {
+  padding: 8px 32px;
+}
+
+/* Main styles */
+
+button:hover {
+  background-color: var(--pink3);
+  color: var(--black3);
+}
+
+.sort-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  gap: 12px;
+}
+
+.sort-button {
+  background-color: var(--white2);
+  color: var(--pink2);
+  border: 3px solid var(--pink2);
+}
+
+.sort-button.pressed {
+  background-color: var(--pink2);
+  color: var(--black3);
+}
+
+.sort-button:hover {
+  background-color: var(--pink3);
+  border: 3px solid var(--pink3);
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: var(--padding-main-side);
+  padding-right: var(--padding-main-side);
+  background-color: var(--pink1);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+}
+
+.todo-details-title {
+  display: flex;
+  font-weight: bold;
+  gap: 20px;
+  padding-bottom: 20px;
+  align-items: center;
+  width: auto;
+}
+
+.todo-details {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 20px;
+  padding-right: 20px;
+  flex: 2 1 auto;
+}
+
+.todo-title {
+  font-size: 36px;
+}
+
+.todo-description {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.todo-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.todo-status-button {
+  padding: 4px 16px;
+}
+
+.todo-status-button.done {
+  background-color: var(--green1);
+  color: var(--white2);
+}
+
+.todo-status-button.done:hover {
+  background-color: var(--green2);
+  color: var(--black3);
+}
+
+input,
+textarea {
+  font-size: 20px;
+  height: 30px;
+  background-color: var(--white2);
+  border: none;
+  border-radius: var(--radius);
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  resize: none;
+}
+
+.big-input {
+  padding-bottom: 0;
+}
+
+textarea {
+  height: 50px;
+}
+
+select {
+  font-size: 26px;
+  height: auto;
+  background-color: var(--white2);
+  border: none;
+  border-radius: var(--radius);
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.todo-container {
+  width: var(--screen-width);
+}
+
+.inputs {
+  width: 100%;
+}
+
+/* Footer styles */
+footer {
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--screen-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Dark Mode */
+
+body.dark-mode {
+  background-color: var(--black2);
+  color: var(--white1);
+}
+
+.dark-mode header {
+  background-color: var(--black1);
+}
+
+.dark-mode .todo {
+  background-color: var(--black1);
+  color: var(--white1);
+}
+
+.dark-mode #create-todo {
+  background-color: var(--black1);
+}
+
+.dark-mode .sort-button {
+  background-color: var(--black2);
+}
+
+.dark-mode .sort-button.pressed {
+  background-color: var(--pink2);
+  color: var(--black3);
+}
+
+.dark-mode .sort-button.pressed:hover {
+  background-color: var(--pink3);
+}

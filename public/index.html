@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>my todo app</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <link rel="stylesheet" href="styles/index.css">
+  <script id="todo-list" type="text/x-handlebars-template"></script>
+  <script src="scripts/controllers/authentication-controller.js" type="module"></script>
+  <script src="scripts/controllers/theme-controller.js" type="module"></script>
+  <script src="scripts/controllers/todo-controller.js" type="module"></script>
+</head>
+<body>
+<header>
+  <div class="my-header">
+    <div class="title">my todo app</div>
+    <div class="header-buttons">
+      <button id="buttonCreateTodo" type="button" class="big-button logged-in">new todo</button>
+      <button id="buttonFilterStatus" type="button" class="big-button logged-in">suppress done</button>
+      <button id="buttonToggleTheme" class="big-button">toggle theme</button>
+      <button id="buttonLogin" type="button" class="big-button">login</button>
+    </div>
+  </div>
+</header>
+<div id="header-container"></div>
+<div id="login-container"></div>
+<main>
+  <div class="sort-buttons logged-in">
+    <button id="buttonSortTitle" type="button" data-sort="name" class="sort-button small-button">title</button>
+    <button id="buttonSortDueDate" type="button" data-sort="dueDate" class="sort-button small-button">
+      due date
+    </button>
+    <button id="buttonSortCreationDate" type="button" data-sort="creationDate" class="sort-button small-button">
+      create date
+    </button>
+    <button id="buttonSortImportance" type="button" data-sort="importance" class="sort-button small-button">
+      importance
+    </button>
+    <button id="buttonSortState" type="button" data-sort="status" class="sort-button small-button">state</button>
+  </div>
+  <div id="todo-container"></div>
+  <div id="edit-todo-container"></div>
+</main>
+<footer>
+  <p>©cbu</p>
+</footer>
+</body>
+</html>

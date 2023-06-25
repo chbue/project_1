@@ -1,0 +1,28 @@
+<div id='create-todo' class='logged-in'>
+  <div>
+    <form id='todo-form'>
+      <div class='todo'>
+        <div class='todo-details'>
+          <div class='todo-details-title big-input'>
+            <input class='todo-title' type='text' id='todo-name' placeholder='write a meaningful title...' required />
+            <select class='select-option' title='importance' id='todo-importance' required>
+              <option value='1'>⚡</option>
+              <option value='2'>⚡⚡</option>
+              <option value='3'>⚡⚡⚡</option>
+            </select>
+          </div>
+          <div><input class='todo-dueDate' type='date' title='datum' id='todo-due-date' required /></div>
+          <div><input class='todo-description' type='text' id='todo-description' placeholder='Todo Description' /></div>
+        </div>
+        <div class='todo-actions'>
+          <button id='saveAndBackButton' type='submit' data-action='saveAndBack' class='small-button'>
+            save
+          </button>
+          <div>
+            <button id='backButton' type='button' class='small-button'>back</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

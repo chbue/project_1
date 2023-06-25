@@ -1,0 +1,40 @@
+{
+  "name": "cas-fee-projekt-1-starter-template",
+  "version": "1.0.0",
+  "description": "Testat template",
+  "main": "public/scripts/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha 'services/tests/*.mjs'",
+    "stylelint": "stylelint \"**/*.css\"",
+    "w3c": "html-validator --file ./public/index.html  --verbose",
+    "eslint": "eslint \"**/*.js\"",
+    "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
+  },
+  "author": "cbu",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mocha": "^10.0.1",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "html-validator-cli": "^7.0.1",
+    "mocha": "^10.2.0",
+    "prettier": "2.6.2",
+    "stylelint": "^14.7.1",
+    "stylelint-config-standard": "^25.0.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "chai": "^4.3.7",
+    "describe": "^1.2.0",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.0",
+    "express-jwt": "^8.4.1",
+    "jsonwebtoken": "^9.0.0",
+    "nedb-promises": "^6.2.1",
+    "sinon": "^15.1.2"
+  }
+}

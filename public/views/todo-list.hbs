@@ -1,0 +1,32 @@
+<div class='todos logged-in'>
+  {{#each todos}}
+    <div class='todo'>
+      <div class='todo-details'>
+        <div class='todo-details-title'>
+          <div class='todo-title'>{{name}}</div>
+          <div class='todo-importance {{importance}}'>{{importance}}</div>
+          <div class='todo-actions'>
+            <div class='status'>
+              <button
+                class="todo-status-button small-button {{#if status}}done{{else}}not-done{{/if}}"
+                data-todo-id="{{id}}" data-action="toggleStatus"
+              >
+                {{#if status}} done {{else}} open {{/if}}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class='todo-dueDate'>{{dueDate}}</div>
+        <div class='todo-description'>{{description}}</div>
+      </div>
+      <div class='todo-actions'>
+        <div class='edit'>
+          <button type='button' class='edit-todo-button small-button' data-todo-id='{{id}}'
+                  data-action='editTodo'>
+            edit
+          </button>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
